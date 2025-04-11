@@ -1,5 +1,6 @@
 package com.conestoga.arcazon.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -18,6 +19,7 @@ public class OrderItem {
     @EmbeddedId
     private OrderItemId id;
 
+    @JsonIgnore
     @MapsId("orderId")
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @OnDelete(action = OnDeleteAction.CASCADE)

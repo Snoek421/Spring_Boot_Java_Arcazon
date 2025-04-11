@@ -1,6 +1,8 @@
 package com.conestoga.arcazon.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.ColumnDefault;
@@ -22,6 +24,7 @@ public class Order {
     @Column(name = "id", nullable = false)
     private Long id;
 
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name = "customer_id", nullable = false)

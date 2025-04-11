@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Product - Arcazon</title>
+  <link  th:href="@{/css/style.css}" rel="stylesheet" />
+  <link  th:href="@{https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css}" rel="stylesheet" />
+</head>
+<body>
+<div class="container mt-4">
+  <h1> Products</h1>
+  <table class="table table-hover">
+    <thead>
+    <tr>
+      <th>Product #</th>
+      <th>Name</th>
+      <th>Price</th>
+      <th>Description</th>
+    </tr>
+    </thead>
+    <tbody th:each="product : ${products}">
+    <tr>
+      <td th:text="${product.id}"></td>
+      <td th:text="${product.name}"></td>
+      <td th:text="${product.price}"></td>
+      <td>
+        <a th:href="@{/products/{id}(id=${product.id})}">Link Text</a>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+</body>
+</html>

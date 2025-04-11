@@ -4,15 +4,46 @@ import com.conestoga.arcazon.model.Category;
 import com.conestoga.arcazon.model.Product;
 import com.conestoga.arcazon.repository.CategoryRepository;
 import com.conestoga.arcazon.repository.ProductRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
+@Service
 public class ProductService {
     private final ProductRepository productRepo;
     private final CategoryRepository categoryRepo;
+
     public ProductService(ProductRepository productRepo, CategoryRepository categoryRepo) {
         this.productRepo=productRepo;
         this.categoryRepo=categoryRepo;
+    }
+
+    public void test(){
+        System.out.println("Test running to verify service");
+        // List All Employees
+        Iterable<Product> employees = productRepo.findAll();
+        employees.forEach(prd -> System.out.println(prd));
+
+        // Find an Employee by id
+        Optional<Product> result = productRepo.findById(1L);
+        result.ifPresent(prd -> System.out.println(prd));
+
+        // Find an Employee by Last Name
+        List<Product> products = productRepo.findByCategory_Id(1L);
+        products.forEach(prd -> System.out.println(prd));
+
+        // Count Number of Employees
+        Long count = productRepo.count();
+        System.out.println("Number of products are: " + count);
+
+        // Delete an Employee Record
+        //productRepo.deleteById(3L);
+
+        // List All Employees
+        Iterable<Product> products1 = productRepo.findAll();
+        products1.forEach(prd -> System.out.println(prd));
     }
 
 

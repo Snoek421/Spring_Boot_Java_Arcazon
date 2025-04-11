@@ -1,6 +1,9 @@
 package com.conestoga.arcazon.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.ColumnDefault;
@@ -13,6 +16,7 @@ import java.util.Set;
 
 @Getter
 @Setter
+@Data
 @Entity
 @Table(name = "products")
 public class Product {
@@ -21,6 +25,7 @@ public class Product {
     @Column(name = "id", nullable = false)
     private Long id;
 
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name = "category_id", nullable = false)
@@ -47,7 +52,12 @@ public class Product {
     @Column(name = "updated_at")
     private Instant updatedAt;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "product")
     private Set<OrderItem> orderItems = new LinkedHashSet<>();
 
+    @Override
+    public String toString(){
+        return "Product:[ id: " + id + " | name: " + name + " | description: " + description + " | price: " + price + " | stock: " + stock + " ]";
+    }
 }
