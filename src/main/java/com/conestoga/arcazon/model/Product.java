@@ -1,5 +1,6 @@
 package com.conestoga.arcazon.model;
 
+import com.conestoga.arcazon.dto.ProductDTO;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
@@ -59,5 +60,16 @@ public class Product {
     @Override
     public String toString(){
         return "Product:[ id: " + id + " | name: " + name + " | description: " + description + " | price: " + price + " | stock: " + stock + " ]";
+    }
+
+    public ProductDTO toProductDTO() {
+        ProductDTO productDTO = new ProductDTO();
+        productDTO.setId(id);
+        productDTO.setName(name);
+        productDTO.setDescription(description);
+        productDTO.setPrice(price);
+        productDTO.setStock(stock);
+        productDTO.setCategoryId(category.getId());
+        return productDTO;
     }
 }

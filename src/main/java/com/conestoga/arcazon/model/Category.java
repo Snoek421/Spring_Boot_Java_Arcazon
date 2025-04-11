@@ -1,5 +1,6 @@
 package com.conestoga.arcazon.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -36,4 +37,8 @@ public class Category {
     @OneToMany(mappedBy = "category")
     private Set<com.conestoga.arcazon.model.Product> products = new LinkedHashSet<>();
 
+    @Override
+    public String toString() {
+        return "Category:[ id: " + id + " | name: " + name + " | description: " + description + " ]";
+    }
 }

@@ -5,6 +5,7 @@ import com.conestoga.arcazon.model.Product;
 import com.conestoga.arcazon.repository.CategoryRepository;
 import com.conestoga.arcazon.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -57,7 +58,7 @@ public class ProductService {
     }
 
     // Create a new product
-    public Product createProduct(Product product, Long categoryId) {
+    public Product createProduct(Product product, @Nullable Long categoryId) {
         // Validate inputs
         if (product == null) {
             throw new IllegalArgumentException("Product cannot be null");
